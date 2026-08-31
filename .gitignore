@@ -1,0 +1,12 @@
+bin/
+obj/
+publish/
+*.user
+*.suo
+settings-preview*.png
+icon-preview.png
+*.zip
+*.sha256
+
+# Per-user runtime configuration
+settings.json
