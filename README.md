@@ -26,8 +26,8 @@
 
 ## 使用
 
-1. 从 [Releases](https://github.com/xydadada/TripleClickHold/releases/latest) 直接下载 `TripleClickHold-win-x64.zip` 并解压。
-2. 双击 `TripleClickHold.exe`。首次启动会打开设置窗口，程序默认处于关闭状态。
+1. 从 [Releases](https://github.com/xydadada/TripleClickHold/releases/latest) 直接下载 `TripleClickHold-Setup-v1.1.0.exe` 安装包；也可以下载 `TripleClickHold-win-x64.zip` 免安装运行。
+2. 安装包会创建桌面/开始菜单快捷方式和卸载项，并保留用户设置。首次启动会打开设置窗口，程序默认处于关闭状态。
 3. 在设置窗口调整点击次数、间隔、左右键和热键，点击“保存并应用”。
 4. 在游戏或目标软件中按 Mouse4/Mouse5 或切换热键开启/关闭。状态会在鼠标附近短暂显示。
 5. 需要立即退出时使用设置里的退出热键，或从托盘菜单选择“退出”。

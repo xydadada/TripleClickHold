@@ -16,4 +16,5 @@
    ```
 
 4. 将发布目录压缩为 `TripleClickHold-win-x64.zip`，并记录 SHA-256。
-5. 通过 GitHub Actions 或 GitHub Release 发布；不要把用户配置、调试截图和临时目录放进压缩包。
+5. 使用 `installer/TripleClickHold.iss` 编译 `TripleClickHold-Setup-v{version}.exe`。安装包是 per-user 安装，不需要安装服务；卸载时保留用户配置。
+6. 通过 GitHub Actions 或 GitHub Release 发布 ZIP、安装包和校验文件；不要把用户配置、调试截图和临时目录放进压缩包。

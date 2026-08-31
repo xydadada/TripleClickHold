@@ -37,6 +37,25 @@ jobs:
           --self-contained true -p:PublishSingleFile=true
           -p:IncludeNativeLibrariesForSelfExtract=true -o artifacts/publish
 
+      - name: Prepare installer payload
+        shell: pwsh
+        run: |
+          Copy-Item app.ico artifacts/publish/TripleClickHold.ico
+          Copy-Item README.md artifacts/publish/README.md
+          Copy-Item LICENSE artifacts/publish/LICENSE
+
+      - name: Install Inno Setup
+        shell: pwsh
+        run: choco install innosetup --no-progress -y
+
+      - name: Build Windows installer
+        shell: pwsh
+        run: >-
+          & "${env:ProgramFiles(x86)}\\Inno Setup 6\\ISCC.exe"
+          installer\\TripleClickHold.iss
+          "/DSourceDir=${{ github.workspace }}\\artifacts\\publish"
+          "/DOutputDir=${{ github.workspace }}\\artifacts"
+
       - name: Package
         shell: pwsh
         run: Compress-Archive -Path artifacts/publish/* -DestinationPath artifacts/TripleClickHold-win-x64.zip
@@ -45,4 +64,6 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: TripleClickHold-win-x64
-          path: artifacts/TripleClickHold-win-x64.zip
+          path: |
+            artifacts/TripleClickHold-win-x64.zip
+            artifacts/TripleClickHold-Setup-v1.1.0.exe
