@@ -26,7 +26,7 @@
 
 ## 使用
 
-1. 从 GitHub Actions 的构建产物下载 `TripleClickHold-win-x64.zip` 并解压。
+1. 从 [Releases](https://github.com/xydadada/TripleClickHold/releases/latest) 直接下载 `TripleClickHold-win-x64.zip` 并解压。
 2. 双击 `TripleClickHold.exe`。首次启动会打开设置窗口，程序默认处于关闭状态。
 3. 在设置窗口调整点击次数、间隔、左右键和热键，点击“保存并应用”。
 4. 在游戏或目标软件中按 Mouse4/Mouse5 或切换热键开启/关闭。状态会在鼠标附近短暂显示。
