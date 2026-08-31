@@ -1,0 +1,48 @@
+name: Build Windows
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    runs-on: windows-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: 8.0.x
+
+      - name: Restore
+        run: dotnet restore TripleClickHold.csproj
+
+      - name: Build
+        run: dotnet build TripleClickHold.csproj -c Release -r win-x64 --no-restore
+
+      - name: Offline self-check
+        run: dotnet .\\bin\\Release\\net8.0-windows\\win-x64\\TripleClickHold.dll --self-check
+
+      - name: Publish single-file executable
+        run: >-
+          dotnet publish TripleClickHold.csproj -c Release -r win-x64
+          --self-contained true -p:PublishSingleFile=true
+          -p:IncludeNativeLibrariesForSelfExtract=true -o artifacts/publish
+
+      - name: Package
+        shell: pwsh
+        run: Compress-Archive -Path artifacts/publish/* -DestinationPath artifacts/TripleClickHold-win-x64.zip
+
+      - name: Upload artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: TripleClickHold-win-x64
+          path: artifacts/TripleClickHold-win-x64.zip
